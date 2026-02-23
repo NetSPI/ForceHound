@@ -1,0 +1,243 @@
+{
+  "metadata": {
+    "source_kind": "Salesforce"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "00D8Z000001gERAUA2",
+        "kinds": [
+          "SF_Organization",
+          "Organization"
+        ],
+        "properties": {
+          "name": "Acme Corp",
+          "id": "00D8Z000001gERAUA2",
+          "objectid": "00D8Z000001gERAUA2",
+          "DefaultAccountAccess": "Read",
+          "DefaultContactAccess": "ControlledByParent",
+          "DefaultOpportunityAccess": "Edit",
+          "DefaultLeadAccess": "ReadEditTransfer",
+          "DefaultCaseAccess": "ReadEditTransfer"
+        }
+      },
+      {
+        "id": "0058Z00000AqR1TQAV",
+        "kinds": [
+          "SF_User",
+          "User"
+        ],
+        "properties": {
+          "name": "Jordan Mitchell",
+          "email": "j.mitchell@acmecorp.example.com",
+          "user_type": "Standard",
+          "is_active": true,
+          "is_system_user": false,
+          "id": "0058Z00000AqR1TQAV",
+          "objectid": "0058Z00000AqR1TQAV"
+        }
+      },
+      {
+        "id": "0058Z00000BrS2UQAV",
+        "kinds": [
+          "SF_User",
+          "User"
+        ],
+        "properties": {
+          "name": "Alex Rivera",
+          "email": "a.rivera@acmecorp.example.com",
+          "user_type": "Standard",
+          "is_active": true,
+          "is_system_user": false,
+          "id": "0058Z00000BrS2UQAV",
+          "objectid": "0058Z00000BrS2UQAV"
+        }
+      },
+      {
+        "id": "0058Z00000CsT3VQAV",
+        "kinds": [
+          "SF_User",
+          "User"
+        ],
+        "properties": {
+          "name": "Sam Nakamura",
+          "email": "s.nakamura@acmecorp.example.com",
+          "user_type": "Standard",
+          "is_active": true,
+          "is_system_user": false,
+          "id": "0058Z00000CsT3VQAV",
+          "objectid": "0058Z00000CsT3VQAV"
+        }
+      },
+      {
+        "id": "00e8Z000001PxYZQA0",
+        "kinds": [
+          "SF_Profile",
+          "SaaS_Container"
+        ],
+        "properties": {
+          "name": "Sys Admin Lite",
+          "user_type": "Standard",
+          "id": "00e8Z000001PxYZQA0",
+          "objectid": "00e8Z000001PxYZQA0"
+        }
+      },
+      {
+        "id": "00e8Z000001QyZAQA0",
+        "kinds": [
+          "SF_Profile",
+          "SaaS_Container"
+        ],
+        "properties": {
+          "name": "Standard User",
+          "user_type": "Standard",
+          "id": "00e8Z000001QyZAQA0",
+          "objectid": "00e8Z000001QyZAQA0"
+        }
+      },
+      {
+        "id": "0PS8Z000003RzABQA0",
+        "kinds": [
+          "SF_PermissionSet",
+          "SaaS_Entitlement"
+        ],
+        "properties": {
+          "name": "Managed_Package_Support",
+          "label": "Managed Package Support",
+          "is_custom": true,
+          "id": "0PS8Z000003RzABQA0",
+          "objectid": "0PS8Z000003RzABQA0"
+        }
+      },
+      {
+        "id": "0PG8Z000002SaACQA0",
+        "kinds": [
+          "SF_PermissionSet",
+          "SaaS_Entitlement"
+        ],
+        "properties": {
+          "name": "Accounting_Users",
+          "label": "Accounting Users",
+          "is_permission_set_group": true,
+          "id": "0PG8Z000002SaACQA0",
+          "objectid": "0PG8Z000002SaACQA0"
+        }
+      },
+      {
+        "id": "0PS8Z000003TbBCQA0",
+        "kinds": [
+          "SF_PermissionSet",
+          "SaaS_Entitlement"
+        ],
+        "properties": {
+          "name": "Accounting_Tools",
+          "label": "Accounting Tools",
+          "is_custom": true,
+          "id": "0PS8Z000003TbBCQA0",
+          "objectid": "0PS8Z000003TbBCQA0"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "start": {
+          "value": "0058Z00000AqR1TQAV",
+          "match_by": "id"
+        },
+        "end": {
+          "value": "00e8Z000001PxYZQA0",
+          "match_by": "id"
+        },
+        "kind": "HasProfile"
+      },
+      {
+        "start": {
+          "value": "0058Z00000BrS2UQAV",
+          "match_by": "id"
+        },
+        "end": {
+          "value": "00e8Z000001QyZAQA0",
+          "match_by": "id"
+        },
+        "kind": "HasProfile"
+      },
+      {
+        "start": {
+          "value": "0058Z00000CsT3VQAV",
+          "match_by": "id"
+        },
+        "end": {
+          "value": "00e8Z000001QyZAQA0",
+          "match_by": "id"
+        },
+        "kind": "HasProfile"
+      },
+      {
+        "start": {
+          "value": "0058Z00000BrS2UQAV",
+          "match_by": "id"
+        },
+        "end": {
+          "value": "0PS8Z000003RzABQA0",
+          "match_by": "id"
+        },
+        "kind": "HasPermissionSet"
+      },
+      {
+        "start": {
+          "value": "0058Z00000CsT3VQAV",
+          "match_by": "id"
+        },
+        "end": {
+          "value": "0PG8Z000002SaACQA0",
+          "match_by": "id"
+        },
+        "kind": "HasPermissionSet"
+      },
+      {
+        "start": {
+          "value": "0PS8Z000003TbBCQA0",
+          "match_by": "id"
+        },
+        "end": {
+          "value": "0PG8Z000002SaACQA0",
+          "match_by": "id"
+        },
+        "kind": "IncludedIn"
+      },
+      {
+        "start": {
+          "value": "00e8Z000001PxYZQA0",
+          "match_by": "id"
+        },
+        "end": {
+          "value": "00D8Z000001gERAUA2",
+          "match_by": "id"
+        },
+        "kind": "ModifyAllData"
+      },
+      {
+        "start": {
+          "value": "0PS8Z000003RzABQA0",
+          "match_by": "id"
+        },
+        "end": {
+          "value": "00D8Z000001gERAUA2",
+          "match_by": "id"
+        },
+        "kind": "AuthorApex"
+      },
+      {
+        "start": {
+          "value": "0PG8Z000002SaACQA0",
+          "match_by": "id"
+        },
+        "end": {
+          "value": "00D8Z000001gERAUA2",
+          "match_by": "id"
+        },
+        "kind": "CustomizeApplication"
+      }
+    ]
+  }
+}

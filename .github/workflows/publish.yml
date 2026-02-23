@@ -1,0 +1,56 @@
+name: Publish to PyPI
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: "Target repository"
+        type: choice
+        options:
+          - testpypi
+          - pypi
+        default: testpypi
+      run_tests:
+        description: "Run test suite before publish"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-and-publish:
+    if: github.event_name == 'workflow_dispatch' && github.repository == 'NetSPI/ForceHound'
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.repository }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install build tools
+        run: python -m pip install --upgrade pip build
+
+      - name: Run tests
+        if: ${{ inputs.run_tests }}
+        run: |
+          python -m pip install -e ".[dev]"
+          python -m pytest tests/ -x -q
+
+      - name: Build dist
+        run: python -m build
+
+      - name: Publish to PyPI
+        if: ${{ inputs.repository == 'pypi' }}
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: Publish to TestPyPI
+        if: ${{ inputs.repository == 'testpypi' }}
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/

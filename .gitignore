@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Testing / coverage
+tests/
+scripts/
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+
+# ForceHound output & logs
+forcehound_output.json
+forcehound_integration_output.json
+forcehound_e2e_test.json
+forcehound_audit_*.jsonl
+forcehound_audit_*.json
+forcehound_deletions_*.json
+test_*.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/
+CLAUDE.md

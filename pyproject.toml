@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forcehound"
+version = "0.1.0"
+description = "Unified Salesforce BloodHound collector with REST API and Aura backends"
+readme = "README.md"
+license = {text = "BSD-3-Clause"}
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+]
+dependencies = [
+    "simple-salesforce>=1.12.0,<2.0.0",
+    "aiohttp>=3.9.0,<4.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/NetSPI/ForceHound"
+Issues = "https://github.com/NetSPI/ForceHound/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+]
+
+[project.scripts]
+forcehound = "forcehound.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
