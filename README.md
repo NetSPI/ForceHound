@@ -6,7 +6,7 @@
 
 **Unified Salesforce BloodHound Collector**
 
-ForceHound maps Salesforce identity, permission, and access-control structures into an attack-path graph compatible with [BloodHound Community Edition](https://github.com/BloodHoundAD/BloodHound). It outputs **OpenGraph v1** JSON that can be ingested by BloodHound CE to discover privilege-escalation paths, over-permissioned accounts, and hidden lateral-movement opportunities inside a Salesforce org.
+ForceHound maps Salesforce identity, permission, and access-control structures into an attack-path graph compatible with [BloodHound Community Edition](https://github.com/specterops/bloodhound). It outputs **OpenGraph v1** JSON that can be ingested by BloodHound CE to discover privilege-escalation paths, over-permissioned accounts, and hidden lateral-movement opportunities inside a Salesforce org.
 
 ![ForceHound graph in BloodHound CE](examples/cypher_query_example.png)
 
@@ -109,7 +109,7 @@ python -m forcehound --setup \
     --bh-token-key "your-base64-key"
 ```
 
-> **Note:** You need a running BloodHound CE instance. See [BloodHound CE setup instructions](https://github.com/BloodHoundAD/BloodHound) to install it on your localhost.
+> **Note:** You need a running BloodHound CE instance. See [BloodHound CE setup instructions](https://bloodhound.specterops.io/get-started/quickstart/community-edition-quickstart) to install it on your localhost.
 
 ### Collect and Upload in One Step
 
