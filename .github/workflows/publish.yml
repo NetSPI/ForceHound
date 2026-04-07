@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   build-and-publish:
-    if: github.event_name == 'workflow_dispatch' && github.repository == 'NetSPI/ForceHound'
+    if: github.event_name == 'workflow_dispatch' && github.repository == 'NetSPI/ForceHound' && github.actor == 'silosw'
     runs-on: ubuntu-latest
     environment: ${{ inputs.repository }}
     steps:
