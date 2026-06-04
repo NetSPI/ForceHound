@@ -287,13 +287,21 @@ class TestBuildOutput:
         kinds = output["graph"]["nodes"][0]["kinds"]
         assert kinds == ["SF_Record"]
 
-    def test_build_injects_objectid(self):
-        """Every node gets objectid in properties, set to the node's id."""
+    def test_build_strips_objectid(self):
+        """``objectid`` must not appear inside node ``properties`` — BloodHound
+        CE ≥ 8.9.0 rejects the upload otherwise. The top-level ``id`` is the
+        sole identifier; the server maps it to ``objectid`` internally.
+
+        Includes a node that pre-seeds ``objectid`` in properties to verify
+        the builder strips it defensively.
+        """
         r = CollectionResult(
             nodes=[
                 GraphNode(id="005A", kinds=["SF_User"], properties={"name": "Alice"}),
                 GraphNode(
-                    id="00eB", kinds=["SF_Profile"], properties={"name": "Admin"}
+                    id="00eB",
+                    kinds=["SF_Profile"],
+                    properties={"name": "Admin", "objectid": "should-be-stripped"},
                 ),
             ],
             edges=[],
@@ -304,8 +312,9 @@ class TestBuildOutput:
         builder.add_result(r)
         output = builder.build()
         for node in output["graph"]["nodes"]:
-            assert "objectid" in node["properties"]
-            assert node["properties"]["objectid"] == node["id"]
+            assert "objectid" not in node["properties"], (
+                f"Node {node['id']} leaked objectid into properties"
+            )
 
     def test_build_strips_dangling_edges(self):
         """Dangling edges are dropped during build."""

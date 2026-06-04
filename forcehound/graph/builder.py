@@ -83,8 +83,12 @@ class GraphBuilder:
         for n in self._nodes.values():
             d = n.to_dict()
             d["kinds"] = d["kinds"][:2]
-            # OpenGraph requires ``objectid`` on every node.
-            d["properties"]["objectid"] = d["id"]
+            # BloodHound CE ≥ 8.9.0 forbids ``objectid`` inside ``properties``
+            # (the OpenGraph node schema has a ``not: required: [objectid]``
+            # clause). The server derives ``objectid`` from the top-level
+            # ``id`` field on ingest, so emitting it again would fail
+            # validation with ``[at '/properties': 'not' failed]``.
+            d["properties"].pop("objectid", None)
             nodes.append(d)
 
         valid_edges: list = []
